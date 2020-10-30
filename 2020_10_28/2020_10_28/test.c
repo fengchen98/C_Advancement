@@ -2,25 +2,96 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <assert.h>
-//strlen的模拟实现
-int my_strlen(const char* str)
-{
-	assert(str);
-	int count = 0;
-	while (*str)
-	{
-		count++;
-		str++;
-	}
-	return count;
-}
-int main()
-{
-	char str[] = "abcdefg";
-	int ret = my_strlen(str);
-	printf("%d\n", ret);
-	return 0;
-}
+////strstr的模拟实现
+//char *my_strstr(const char* str1, const char* str2)
+//{
+//	assert(str1);
+//	assert(str2);
+//	const char* s1 = str1;
+//	const char* s2 = str2;
+//	const char* cp = str1;
+//	if (*s2 == '\0')
+//	{
+//		return (char*)str1;
+//	}
+//	while (*s1 && *s2 && *cp)
+//	{
+//		s1 = cp;
+//		s2 = str2;
+//		while(*s1 == *s2)
+//		{
+//			s1++;
+//			s2++;
+//		}
+//		if (*s2 == '\0')
+//		{
+//			return (char*)cp;
+//		}
+//		cp ++;  
+//	}
+//	return NULL;
+//}
+//
+//int main()
+//{
+//	char arr[] = "abcdedeafa";
+//	char* ret = my_strstr(arr, "cded");
+//	if (ret != NULL)
+//	{
+//		printf("%s\n", ret);
+//	}
+//	return 0;
+//}
+
+
+
+////strcat的模拟实现
+//char* my_strcat(char* dest, const char* src)
+//{
+//	assert(dest != NULL);
+//	assert(src != NULL);
+//	char* ret = dest;
+//	//先找到目的地空间的‘\0’
+//	while (*dest)
+//	{
+//		dest++;
+//	}
+//	//追加
+//	while (*dest++ = *src++);
+//	return ret;
+//}
+//int main()
+//{
+//	char str1[20] = "hello ";
+//	printf("%s\n", my_strcat(str1, "world"));
+//}
+
+
+
+
+
+
+
+
+////strlen的模拟实现
+//int my_strlen(const char* str)
+//{
+//	assert(str);
+//	int count = 0;
+//	while (*str)
+//	{
+//		count++;
+//		str++;
+//	}
+//	return count;
+//}
+//int main()
+//{
+//	char str[] = "abcdefg";
+//	int ret = my_strlen(str);
+//	printf("%d\n", ret);
+//	return 0;
+//}
 
 
 
@@ -65,6 +136,7 @@ int main()
 //}
 
 
+
 ////strcpy的模拟实现
 //char* my_strcpy(char* dest, const char*src)
 //{
@@ -92,29 +164,35 @@ int main()
 
 
 
-////memmove的模拟实现
-//void* my_memmove(void* dest, const void* src, size_t count)
-//{
-//	assert(dest);
-//	assert(src);
-//	if (dest < src)
-//	{
-//		//从前向后拷贝
-//		while (count--)
-//		{
-//			*(char*)dest = *(char*)src;
-//			dest = (char*)dest + 1;
-//			src = (char*)src + 1;
-//		}
-//	}
-//	else
-//	{
-//		while (count--)
-//		{
-//			*((char*)dest + count) = *((char*)src + count);
-//		}
-//	}
-//}
+//memmove的模拟实现
+void* my_memmove(void* dest, const void* src, size_t count)
+{
+	assert(dest);
+	assert(src);
+	if (dest < src)
+	{
+		//从前向后拷贝
+		while (count--)
+		{
+			*(char*)dest = *(char*)src;
+			dest = (char*)dest + 1;
+			src = (char*)src + 1;
+		}
+	}
+	else
+	{
+		while (count--)
+		{
+			*((char*)dest + count) = *((char*)src + count);
+		}
+	}
+}
+int main(){
+	char str[100] = "hello world";
+	my_memmove(str + 6, str, 12);
+	printf("%s\n", str);
+	return 0;
+}
 
 
 ////memcpy的模拟实现
@@ -138,6 +216,9 @@ int main()
 //	int arr1[] = { 1, 2, 3, 4, 5 };
 //	int arr2[10] = { 0 };
 //	my_memcpy(arr2, arr1, sizeof(arr1));
+//	for (int i = 0; i < 5; ++i){
+//		printf("%d ", arr2[i]);
+//	}
 //	return 0;
 //}
 
